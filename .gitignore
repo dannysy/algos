@@ -1,0 +1,113 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+*.exe
+BinarySearch/BinarySearch/bin/Debug/BinarySearch.exe.config
+BinarySearch/BinarySearch/bin/Debug/BinarySearch.pdb
+BinarySearch/BinarySearch/bin/Debug/BinarySearch.vshost.exe.manifest
+BinarySearch/BinarySearch/bin/Debug/BinarySearch.vshost.exe.config
+BinarySearch/BinarySearch/obj/Debug/BinarySearch.csproj.FileListAbsolute.txt
+BinarySearch/BinarySearch/obj/Debug/BinarySearch.pdb
+BinarySearch/BinarySearch/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/BinarySearch/BinarySearch/obj/Debug
+/BinarySearch/BinSearchUnitTests/obj/Debug
+/BinarySearch/BinSearchUnitTests/bin/Debug
+/Deck/Brackets/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+/Deck/Brackets/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+/Deck/Brackets/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+/Deck/Brackets/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Deck/Brackets/obj/Debug/Brackets.pdb
+/Deck/Brackets/obj/Debug/Brackets.dll
+/Deck/Brackets/obj/Debug/Brackets.csprojResolveAssemblyReference.cache
+/Deck/Brackets/obj/Debug/Brackets.csproj.FileListAbsolute.txt
+/Deck/Brackets/obj/Debug
+/Deck/Brackets/bin/Debug/Brackets.pdb
+/Deck/Brackets/bin/Debug/Brackets.dll
+/Deck/Brackets/bin/Debug
+/Deck/Deck/obj/Debug
+/Deck/Deck/bin/Debug
+/Deck/DeckTests/obj/Debug
+/Deck/DeckTests/bin/Debug
+/Deck/Main/bin/Debug/Main.vshost.exe.manifest
+/Deck/Main/bin/Debug/Main.vshost.exe.config
+/Deck/Main/bin/Debug/Main.pdb
+/Deck/Main/bin/Debug/Main.exe.config
+/Deck/Main/bin/Debug
+/Deck/Main/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+/Deck/Main/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+/Deck/Main/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+/Deck/Main/obj/Debug/Main.pdb
+/Deck/Main/obj/Debug/Main.csprojResolveAssemblyReference.cache
+/Deck/Main/obj/Debug/Main.csproj.FileListAbsolute.txt
+/Deck/Main/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Deck/Main/obj/Debug
+/Deck/PriorityQ/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+/Deck/PriorityQ/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+/Deck/PriorityQ/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+/Deck/PriorityQ/obj/Debug/PriorityQ.pdb
+/Deck/PriorityQ/obj/Debug/PriorityQ.dll
+/Deck/PriorityQ/obj/Debug/PriorityQ.csprojResolveAssemblyReference.cache
+/Deck/PriorityQ/obj/Debug/PriorityQ.csproj.FileListAbsolute.txt
+/Deck/PriorityQ/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Deck/PriorityQ/obj/Debug
+/Deck/PriorityQ/bin/Debug/PriorityQ.pdb
+/Deck/PriorityQ/bin/Debug/PriorityQ.dll
+/Deck/PriorityQ/bin/Debug
+/Deck/Sort/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+/Deck/Sort/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+/Deck/Sort/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+/Deck/Sort/obj/Debug/Sort.pdb
+/Deck/Sort/obj/Debug/Sort.dll
+/Deck/Sort/obj/Debug/Sort.csprojResolveAssemblyReference.cache
+/Deck/Sort/obj/Debug/Sort.csproj.FileListAbsolute.txt
+/Deck/Sort/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Deck/Sort/obj/Debug
+/Deck/Sort/bin/Debug/Sort.pdb
+/Deck/Sort/bin/Debug/Sort.dll
+/Deck/Sort/bin/Debug/PriorityQ.pdb
+/Deck/Sort/bin/Debug/PriorityQ.dll
+/Deck/Sort/bin/Debug
