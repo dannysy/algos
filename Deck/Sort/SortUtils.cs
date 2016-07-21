@@ -37,7 +37,7 @@ namespace Sort
         public static int[] PyramidSort(int[] array, int length)
         {
             var priorityQueue = new PriorityQueue(array, length);
-            for (int i = length; i >= 0; i--)
+            for (int i = length - 1; i >= 0; i--)
             {
                 array[i] = priorityQueue.GetNext();
             }

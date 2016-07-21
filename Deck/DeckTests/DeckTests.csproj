@@ -62,6 +62,10 @@
       <Project>{4E4C0CC9-CC25-415F-B108-1E198DBA3B86}</Project>
       <Name>Brackets</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
+      <Project>{CF0053E1-D0B8-4DAB-B325-E37DF728DD62}</Project>
+      <Name>CommonUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Deck\Deck.csproj">
       <Project>{C41EFAEF-CC6E-413B-8211-A3B12F7A3485}</Project>
       <Name>Deck</Name>
