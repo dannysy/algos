@@ -4,7 +4,7 @@ using Sort;
 namespace DeckTests
 {
     [TestClass]
-    public class PasteSortTest
+    public class PasteSortTests
     {
         [TestMethod]
         public void PSTest()

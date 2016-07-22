@@ -1,47 +1,7 @@
 ﻿using System;
-using System.Text;
 
-public class MainClass
+namespace PriorityQ
 {
-    public static void Main()
-    {
-        int count;
-        if(!int.TryParse(Console.ReadLine(), out count) || count <= 0)
-            return;
-        var xyPoints = new XYPoint[count];
-        for (int i = 0; i < count; i++)
-        {
-            var xyStrings = Console.ReadLine().Split(' ');
-            int x,y;
-            if (!int.TryParse(xyStrings[0], out x) || !int.TryParse(xyStrings[1], out y))
-                return;
-            xyPoints[i] = new XYPoint(x, y);
-        }
-        Console.WriteLine(SolveCurve(xyPoints, count));
-        Console.ReadKey();
-    }
-
-    private static string SolveCurve(XYPoint[] points, int count)
-    {
-        var sorted = XYPyramidSort(points);
-        var result = new StringBuilder();
-        for (int i = 0; i < count; i++)
-        {
-            result.AppendLine(sorted[i].ToString());
-        }
-        return result.ToString();
-    }
-
-    private static XYPoint[] XYPyramidSort(XYPoint[] array)
-    {
-        var xyPriorityQueue = new XYPriorityQueue(array);
-        for (int i = array.Length - 1; i >= 0; i--)
-        {
-            array[i] = xyPriorityQueue.GetNext();
-        }
-        return array;
-    }
-
     public class XYPriorityQueue
     {
         private int _length;
@@ -161,38 +121,6 @@ public class MainClass
             var newBuffer = new XYPoint[_size];
             Array.Copy(_buffer, 0, newBuffer, 0, _size);
             return newBuffer;
-        }
-    }
-
-    public class XYPoint : IComparable
-    {
-        public int X { get; }
-        public int Y { get; }
-
-        public XYPoint(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-
-        public override string ToString()
-        {
-            return X + " " + Y;
-        }
-
-        public int CompareTo(object obj)
-        {
-            var target = obj as XYPoint;
-            if (target == null) throw new ArgumentException(nameof(obj));
-            if (X > target.X)
-                return 1;
-            if (X < target.X)
-                return -1;
-            if (Y > target.Y)
-                return 1;
-            if (Y < target.Y)
-                return -1;
-            return 0;
         }
     }
 }

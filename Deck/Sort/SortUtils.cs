@@ -43,5 +43,15 @@ namespace Sort
             }
             return array;
         }
+
+        public static XYPoint[] XYPyramidSort(XYPoint[] array)
+        {
+            var xyPriorityQueue = new XYPriorityQueue(array);
+            for (int i = array.Length - 1; i >= 0; i--)
+            {
+                array[i] = xyPriorityQueue.GetNext();
+            }
+            return array;
+        }
     }
 }

@@ -47,6 +47,8 @@
     <Compile Include="exercises\BracketsMain.cs" />
     <Compile Include="exercises\DeckMain.cs" />
     <Compile Include="exercises\GreedyVovaAndPriprityQueueMain.cs" />
+    <Compile Include="exercises\PasteSortMain.cs" />
+    <Compile Include="exercises\XYPriorityQueueTask.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
