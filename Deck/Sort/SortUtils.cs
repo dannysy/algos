@@ -1,4 +1,5 @@
-﻿using PriorityQ;
+﻿using System;
+using PriorityQ;
 
 namespace Sort
 {
@@ -52,6 +53,58 @@ namespace Sort
                 array[i] = xyPriorityQueue.GetNext();
             }
             return array;
+        }
+
+        public static int[] MergeSort(int[] array, int length)
+        {
+            MergeSortReq(array, 0, length - 1);
+            return array;
+        }
+
+        private static void MergeSortReq(int[] array, int headIndex, int tailIndex)
+        {
+            if (tailIndex <= headIndex)
+                return;
+            var middle = (tailIndex + headIndex) / 2;
+            MergeSortReq(array, headIndex, middle);
+            MergeSortReq(array, middle + 1, tailIndex);
+            Merge(array, headIndex, middle, middle + 1, tailIndex);
+        }
+
+        private static void Merge(int[] array, int headLeft, int tailLeft, int headRight, int tailRight)
+        {
+            var leftLength = tailLeft - headLeft + 1;
+            var rightLength = tailRight - headRight + 1;
+            var length = leftLength + rightLength;
+            var tmpArray = new int[length];
+            int rightPtr = headRight, leftPtr = headLeft, ptr = 0;
+            while (rightPtr <= tailRight && leftPtr <= tailLeft)
+            {
+                if (array[rightPtr] < array[leftPtr])
+                {
+                    tmpArray[ptr] = array[rightPtr];
+                    ++rightPtr;
+                }
+                else 
+                {
+                    tmpArray[ptr] = array[leftPtr];
+                    ++leftPtr;
+                }
+                ++ptr;
+            }
+            while (rightPtr <= tailRight)
+            {
+                tmpArray[ptr] = array[rightPtr];
+                ++ptr;
+                ++rightPtr;
+            }
+            while (leftPtr <= tailLeft)
+            {
+                tmpArray[ptr] = array[leftPtr];
+                ++ptr;
+                ++leftPtr;
+            }
+            Array.Copy(tmpArray, 0, array, headLeft, length);
         }
     }
 }

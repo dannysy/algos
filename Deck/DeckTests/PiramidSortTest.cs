@@ -20,6 +20,13 @@ namespace DeckTests
             Assert.IsTrue(sorted.AreEqual(new[] { 1, 1, 1 }));
             sorted = SortUtils.PyramidSort(new[] { 123, 34, 14, 63, 45, 21, 11, 4 }, 8);
             Assert.IsTrue(sorted.AreEqual(new[] { 4, 11, 14, 21, 34, 45, 63, 123 }));
+            Random rnd = new Random();
+            var array = new int[100];
+            for (int i = 0; i < 100; i++)
+                array[i] = rnd.Next(1000);
+            sorted = SortUtils.PyramidSort(array, 100);
+            Array.Sort(array);
+            Assert.IsTrue(sorted.AreEqual(array));
         }
 
         [TestMethod]

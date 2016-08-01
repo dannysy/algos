@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BracketTests.cs" />
+    <Compile Include="MergeSortTest.cs" />
     <Compile Include="PasteSortTests.cs" />
     <Compile Include="PiramidSortTest.cs" />
     <Compile Include="PrirityQueueTests.cs" />
