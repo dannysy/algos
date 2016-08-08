@@ -55,7 +55,7 @@
     <Compile Include="PasteSortTests.cs" />
     <Compile Include="PiramidSortTest.cs" />
     <Compile Include="PrirityQueueTests.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="DeckTaskTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XYPriorityQueueTests.cs" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Main.exercises
+namespace Main.Exercises
 {
     public class DeckMain
     {

@@ -43,12 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="exercises\AnotherVersion.cs" />
-    <Compile Include="exercises\BracketsMain.cs" />
-    <Compile Include="exercises\DeckMain.cs" />
-    <Compile Include="exercises\GreedyVovaAndPriprityQueueMain.cs" />
-    <Compile Include="exercises\PasteSortMain.cs" />
-    <Compile Include="exercises\XYPriorityQueueTask.cs" />
+    <Compile Include="Exercises\AnotherVersion.cs" />
+    <Compile Include="Exercises\BracketsMain.cs" />
+    <Compile Include="Exercises\DeckMain.cs" />
+    <Compile Include="Exercises\GreedyVovaAndPriprityQueueMain.cs" />
+    <Compile Include="Exercises\PaintedSectionsTaskMain.cs" />
+    <Compile Include="Exercises\PasteSortMain.cs" />
+    <Compile Include="Exercises\XYPriorityQueueTaskMain.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

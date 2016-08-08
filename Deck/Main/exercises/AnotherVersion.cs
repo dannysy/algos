@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Main.exercises
+namespace Main.Exercises
 {
     public class AnotherVersion
     {

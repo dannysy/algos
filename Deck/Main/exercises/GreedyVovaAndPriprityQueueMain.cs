@@ -1,4 +1,4 @@
-﻿namespace Main.exercises
+﻿namespace Main.Exercises
 {
     public class GreedyVovaAndPriprityQueueMain
     {

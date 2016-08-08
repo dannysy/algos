@@ -1,5 +1,6 @@
 ﻿using System;
 using PriorityQ;
+using Sort.Tasks;
 
 namespace Sort
 {
@@ -45,7 +46,7 @@ namespace Sort
             return array;
         }
 
-        public static XYPoint[] XYPyramidSort(XYPoint[] array)
+        public static XYPoint[] XyPyramidSort(XYPoint[] array)
         {
             var xyPriorityQueue = new XYPriorityQueue(array);
             for (int i = array.Length - 1; i >= 0; i--)
@@ -86,6 +87,58 @@ namespace Sort
                     ++rightPtr;
                 }
                 else 
+                {
+                    tmpArray[ptr] = array[leftPtr];
+                    ++leftPtr;
+                }
+                ++ptr;
+            }
+            while (rightPtr <= tailRight)
+            {
+                tmpArray[ptr] = array[rightPtr];
+                ++ptr;
+                ++rightPtr;
+            }
+            while (leftPtr <= tailLeft)
+            {
+                tmpArray[ptr] = array[leftPtr];
+                ++ptr;
+                ++leftPtr;
+            }
+            Array.Copy(tmpArray, 0, array, headLeft, length);
+        }
+
+        public static PointWithType[] MergeSort(PointWithType[] array, int length)
+        {
+            MergeSortReq(array, 0, length - 1);
+            return array;
+        }
+
+        private static void MergeSortReq(PointWithType[] array, int headIndex, int tailIndex)
+        {
+            if (tailIndex <= headIndex)
+                return;
+            var middle = (tailIndex + headIndex) / 2;
+            MergeSortReq(array, headIndex, middle);
+            MergeSortReq(array, middle + 1, tailIndex);
+            Merge(array, headIndex, middle, middle + 1, tailIndex);
+        }
+
+        private static void Merge(PointWithType[] array, int headLeft, int tailLeft, int headRight, int tailRight)
+        {
+            var leftLength = tailLeft - headLeft + 1;
+            var rightLength = tailRight - headRight + 1;
+            var length = leftLength + rightLength;
+            var tmpArray = new PointWithType[length];
+            int rightPtr = headRight, leftPtr = headLeft, ptr = 0;
+            while (rightPtr <= tailRight && leftPtr <= tailLeft)
+            {
+                if (array[rightPtr].CompareTo(array[leftPtr]) == -1)
+                {
+                    tmpArray[ptr] = array[rightPtr];
+                    ++rightPtr;
+                }
+                else
                 {
                     tmpArray[ptr] = array[leftPtr];
                     ++leftPtr;

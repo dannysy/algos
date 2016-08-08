@@ -1,6 +1,6 @@
-﻿namespace Main.exercises
+﻿namespace Main.Exercises
 {
-    public class XYPriorityQueueTask
+    public class XYPriorityQueueTaskMain
     {
         //public static void Main()
         //{

@@ -45,7 +45,7 @@ namespace DeckTests
 
         private string SolveCurve(XYPoint[] points, int count)
         {
-            var sorted = SortUtils.XYPyramidSort(points);
+            var sorted = SortUtils.XyPyramidSort(points);
             var result = new StringBuilder();
             for (int i = 0; i < count; i++)
             {

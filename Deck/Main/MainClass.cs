@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 
 public class MainClass
 {
@@ -8,190 +7,129 @@ public class MainClass
         int count;
         if(!int.TryParse(Console.ReadLine(), out count) || count <= 0)
             return;
-        var xyPoints = new XYPoint[count];
+        var points = new PointWithType[count * 2];
         for (int i = 0; i < count; i++)
         {
             var xyStrings = Console.ReadLine().Split(' ');
-            int x,y;
-            if (!int.TryParse(xyStrings[0], out x) || !int.TryParse(xyStrings[1], out y))
+            int x1,x2;
+            if (!int.TryParse(xyStrings[0], out x1) || !int.TryParse(xyStrings[1], out x2))
                 return;
-            xyPoints[i] = new XYPoint(x, y);
+            points[i * 2] = new PointWithType(PointWithType.PointType.Start, x1);
+            points[i * 2 + 1] = new PointWithType(PointWithType.PointType.End, x2);
         }
-        Console.WriteLine(SolveCurve(xyPoints, count));
+        var sortedPoints = MergeSort(points, count * 2);
+        Console.WriteLine(CountSections(sortedPoints));
         Console.ReadKey();
     }
 
-    private static string SolveCurve(XYPoint[] points, int count)
+    private static int CountSections(PointWithType[] sorted)
     {
-        var sorted = XYPyramidSort(points);
-        var result = new StringBuilder();
-        for (int i = 0; i < count; i++)
+        var length = 0;
+        var layer = 0;
+        foreach (var pointWithType in sorted)
         {
-            result.AppendLine(sorted[i].ToString());
+            if (pointWithType.Type == PointWithType.PointType.Start)
+                pointWithType.Layer = ++layer;
+            else pointWithType.Layer = --layer;
         }
-        return result.ToString();
+        PointWithType start = null;
+        foreach (var pointWithType in sorted)
+        {
+            if (pointWithType.Layer == 1 && start == null)
+            {
+                start = pointWithType;
+                continue;
+            }
+            if (pointWithType.Layer != 1 && start != null)
+            {
+                length += pointWithType.Point - start.Point;
+                start = null;
+            }
+        }
+        return length;
     }
 
-    private static XYPoint[] XYPyramidSort(XYPoint[] array)
+    private static PointWithType[] MergeSort(PointWithType[] array, int length)
     {
-        var xyPriorityQueue = new XYPriorityQueue(array);
-        for (int i = array.Length - 1; i >= 0; i--)
-        {
-            array[i] = xyPriorityQueue.GetNext();
-        }
+        MergeSortReq(array, 0, length - 1);
         return array;
     }
 
-    public class XYPriorityQueue
+    private static void MergeSortReq(PointWithType[] array, int headIndex, int tailIndex)
     {
-        private int _length;
-        private XYPoint[] _buffer;
-        private int _size;
-
-        public XYPriorityQueue(int size)
-        {
-            _buffer = new XYPoint[size];
-            _size = size;
-        }
-
-        public XYPriorityQueue(XYPoint[] buffer) : this(buffer.Length)
-        {
-            Array.Copy(buffer, _buffer, buffer.Length);
-            _length = _size;
-            BuildHeap();
-        }
-
-        private void BuildHeap()
-        {
-            if (_length <= 0)
-                throw new Exception("empty");
-            for (int i = _length / 2 - 1; i >= 0; i--)
-            {
-                SiftDown(i);
-            }
-        }
-
-        private int GetParentIndex(int index)
-        {
-            return (index - 1) / 2;
-        }
-
-        private int GetLargestChildIndex(int index)
-        {
-            var first = index * 2 + 1;
-            var second = index * 2 + 2;
-            if (first >= _length)
-                return -1;
-            if (second >= _length)
-                return first;
-            return _buffer[first].CompareTo(_buffer[second]) == 1 ? first : second;
-
-        }
-
-        private void SiftUp(int index)
-        {
-            if (_length <= 0)
-                throw new Exception("empty");
-            while (index > 0)
-            {
-                var parentIndex = GetParentIndex(index);
-                if (_buffer[parentIndex].CompareTo(_buffer[index]) != -1)
-                    return;
-                var tmpParent = _buffer[parentIndex];
-                _buffer[parentIndex] = _buffer[index];
-                _buffer[index] = tmpParent;
-                index = parentIndex;
-            }
-        }
-
-        private void SiftDown(int index)
-        {
-            if (_length <= 0)
-                throw new Exception("empty");
-            while (index <= _length / 2 - 1)
-            {
-                var largestChildIndex = GetLargestChildIndex(index);
-                if (_buffer[index].CompareTo(_buffer[largestChildIndex]) != -1)
-                    return;
-                var tmpParent = _buffer[index];
-                _buffer[index] = _buffer[largestChildIndex];
-                _buffer[largestChildIndex] = tmpParent;
-                index = largestChildIndex;
-            }
-        }
-
-
-        public void InsertWithPriority(XYPoint value)
-        {
-            if (_length == _size)
-                Reallocate();
-            _buffer[_length] = value;
-            _length++;
-            SiftUp(_length - 1);
-        }
-
-        public XYPoint GetNext()
-        {
-            var next = _buffer[0];
-            _buffer[0] = _buffer[_length - 1];
-            _buffer[_length - 1] = null;
-            _length--;
-            if (_length > 1)
-                SiftDown(0);
-            return next;
-        }
-
-        public XYPoint PeekAtNext()
-        {
-            if (_length == 0)
-                throw new Exception("empty");
-            return _buffer[0];
-        }
-
-        private void Reallocate()
-        {
-            var newBuffer = new XYPoint[_size * 2];
-            Array.Copy(_buffer, 0, newBuffer, 0, _size);
-            _size = _size * 2;
-            _buffer = newBuffer;
-        }
-
-        public XYPoint[] ToArray()
-        {
-            var newBuffer = new XYPoint[_size];
-            Array.Copy(_buffer, 0, newBuffer, 0, _size);
-            return newBuffer;
-        }
+        if (tailIndex <= headIndex)
+            return;
+        var middle = (tailIndex + headIndex) / 2;
+        MergeSortReq(array, headIndex, middle);
+        MergeSortReq(array, middle + 1, tailIndex);
+        Merge(array, headIndex, middle, middle + 1, tailIndex);
     }
 
-    public class XYPoint : IComparable
+    private static void Merge(PointWithType[] array, int headLeft, int tailLeft, int headRight, int tailRight)
     {
-        public int X { get; }
-        public int Y { get; }
-
-        public XYPoint(int x, int y)
+        var leftLength = tailLeft - headLeft + 1;
+        var rightLength = tailRight - headRight + 1;
+        var length = leftLength + rightLength;
+        var tmpArray = new PointWithType[length];
+        int rightPtr = headRight, leftPtr = headLeft, ptr = 0;
+        while (rightPtr <= tailRight && leftPtr <= tailLeft)
         {
-            X = x;
-            Y = y;
+            if (array[rightPtr].CompareTo(array[leftPtr]) == -1)
+            {
+                tmpArray[ptr] = array[rightPtr];
+                ++rightPtr;
+            }
+            else
+            {
+                tmpArray[ptr] = array[leftPtr];
+                ++leftPtr;
+            }
+            ++ptr;
+        }
+        while (rightPtr <= tailRight)
+        {
+            tmpArray[ptr] = array[rightPtr];
+            ++ptr;
+            ++rightPtr;
+        }
+        while (leftPtr <= tailLeft)
+        {
+            tmpArray[ptr] = array[leftPtr];
+            ++ptr;
+            ++leftPtr;
+        }
+        Array.Copy(tmpArray, 0, array, headLeft, length);
+    }
+
+    public class PointWithType : IComparable
+    {
+        public PointWithType(PointType type, int point)
+        {
+            Type = type;
+            Point = point;
         }
 
-        public override string ToString()
+        public enum PointType
         {
-            return X + " " + Y;
+            Start, End
         }
+
+        public int Point { get; }
+        public PointType Type { get; }
+        public int Layer { get; set; }
 
         public int CompareTo(object obj)
         {
-            var target = obj as XYPoint;
-            if (target == null) throw new ArgumentException(nameof(obj));
-            if (X > target.X)
-                return 1;
-            if (X < target.X)
+            var pwt = obj as PointWithType;
+            if (pwt == null) throw new ArgumentException(nameof(obj));
+            if (pwt.Point > Point)
                 return -1;
-            if (Y > target.Y)
+            if (pwt.Point < Point)
                 return 1;
-            if (Y < target.Y)
+            if (pwt.Type == PointType.Start && Type == PointType.End)
                 return -1;
+            if (pwt.Type == PointType.End && Type == PointType.Start)
+                return 1;
             return 0;
         }
     }

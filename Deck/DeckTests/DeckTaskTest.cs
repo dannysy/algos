@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DeckTests
 {
     [TestClass]
-    public class UnitTest1
+    public class DeckTaskTest
     {
         [TestMethod]
         public void TestMethod()
