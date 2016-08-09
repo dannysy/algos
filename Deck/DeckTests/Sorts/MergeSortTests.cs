@@ -1,14 +1,12 @@
-﻿using System;
-using CommonUtils.Extensions;
+﻿using CommonUtils.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PriorityQ;
 using Sort;
 using Sort.Tasks;
 
-namespace DeckTests
+namespace DeckTests.Sorts
 {
     [TestClass]
-    public class MergeSortTest
+    public class MergeSortTests
     {
         [TestMethod]
         public void MergeSortTest1()

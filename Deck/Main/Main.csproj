@@ -46,6 +46,7 @@
     <Compile Include="Exercises\AnotherVersion.cs" />
     <Compile Include="Exercises\BracketsMain.cs" />
     <Compile Include="Exercises\DeckMain.cs" />
+    <Compile Include="Exercises\DeepMergeTaskMain.cs" />
     <Compile Include="Exercises\GreedyVovaAndPriprityQueueMain.cs" />
     <Compile Include="Exercises\PaintedSectionsTaskMain.cs" />
     <Compile Include="Exercises\PasteSortMain.cs" />

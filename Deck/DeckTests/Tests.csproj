@@ -51,13 +51,15 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BracketTests.cs" />
-    <Compile Include="MergeSortTest.cs" />
-    <Compile Include="PasteSortTests.cs" />
-    <Compile Include="PiramidSortTest.cs" />
-    <Compile Include="PrirityQueueTests.cs" />
-    <Compile Include="DeckTaskTest.cs" />
+    <Compile Include="DeckTaskTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XYPriorityQueueTests.cs" />
+    <Compile Include="Sorts\DeepMergeTests.cs" />
+    <Compile Include="Sorts\MergeSortTests.cs" />
+    <Compile Include="Sorts\MinHeapTests.cs" />
+    <Compile Include="Sorts\PasteSortTests.cs" />
+    <Compile Include="Sorts\PiramidSortTests.cs" />
+    <Compile Include="Sorts\PrirityQueueTests.cs" />
+    <Compile Include="Sorts\XYPriorityQueueTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Brackets\Brackets.csproj">

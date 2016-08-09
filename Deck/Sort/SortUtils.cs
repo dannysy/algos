@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using PriorityQ;
+using Sort.Models;
 using Sort.Tasks;
 
 namespace Sort
@@ -158,6 +160,27 @@ namespace Sort
                 ++leftPtr;
             }
             Array.Copy(tmpArray, 0, array, headLeft, length);
+        }
+
+        public static int[] DeepMerge(List<int[]> sortedArrays, int count, int length)
+        {
+            var minHeap = new MinHeap<ValueInfo>(count);
+            var sorted = new int[length * count];
+            var ind = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var value = sortedArrays[i][0];
+                minHeap.InsertWithPriority(value, new ValueInfo(0, i, value));
+            }
+            while (minHeap.Length > 0)
+            {
+                var min = minHeap.GetNext();
+                sorted[ind++] = min.Value;
+                if(min.ValueIndex >= sortedArrays[min.ArrayIndex].Length - 1) continue;
+                var nextValue = new ValueInfo(min.ValueIndex + 1, min.ArrayIndex, sortedArrays[min.ArrayIndex][min.ValueIndex + 1]);
+                minHeap.InsertWithPriority(nextValue.Value, nextValue);
+            }
+            return sorted;
         }
     }
 }

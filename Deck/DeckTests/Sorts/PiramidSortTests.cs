@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 using CommonUtils.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PriorityQ;
 using Sort;
 
-namespace DeckTests
+namespace DeckTests.Sorts
 {
     [TestClass]
-    public class PiramidSortTest
+    public class PiramidSortTests
     {
         [TestMethod]
         public void PyramidSort()

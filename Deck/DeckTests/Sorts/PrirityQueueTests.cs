@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PriorityQ;
 
-namespace DeckTests
+namespace DeckTests.Sorts
 {
     [TestClass]
     public class PrirityQueueTests

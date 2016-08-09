@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MinHeap.cs" />
+    <Compile Include="MinHeapNode.cs" />
+    <Compile Include="MinHeapT.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="PriorityQueueBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

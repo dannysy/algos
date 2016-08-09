@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sort;
 
-namespace DeckTests
+namespace DeckTests.Sorts
 {
     [TestClass]
     public class PasteSortTests
