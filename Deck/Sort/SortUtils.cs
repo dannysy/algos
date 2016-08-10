@@ -182,5 +182,42 @@ namespace Sort
             }
             return sorted;
         }
+
+        public static int[] QuickSort(int[] array, int length)
+        {
+            QuickSortReq(array, 0, length - 1);
+            return array;
+        }
+
+        private static void QuickSortReq(int[] array, int headIndex, int tailIndex)
+        {
+            var partition = Partition(array, headIndex, tailIndex);
+            if(partition > headIndex) QuickSortReq(array, headIndex, partition - 1);
+            if(partition < tailIndex) QuickSortReq(array, partition + 1, tailIndex);
+        }
+
+        public static int Partition(int[] array, int headIndex, int tailIndex)
+        {
+            if (tailIndex <= headIndex)
+                return headIndex;
+            int pivot = array[tailIndex];
+            int left = headIndex, right = tailIndex - 1;
+            while (left <= right)
+            {
+                while (array[left] < pivot) ++left;
+                while (right >= 0 && array[right] >= pivot) --right;
+                if (left < right)
+                    Swap(array, left++, right--);
+            }
+            Swap(array, left, tailIndex);
+            return left;
+        }
+
+        public static void Swap(int[] array, int firstIndex, int secondIndex)
+        {
+            var tmp = array[firstIndex];
+            array[firstIndex] = array[secondIndex];
+            array[secondIndex] = tmp;
+        }
     }
 }

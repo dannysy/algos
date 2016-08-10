@@ -56,9 +56,11 @@
     <Compile Include="Sorts\DeepMergeTests.cs" />
     <Compile Include="Sorts\MergeSortTests.cs" />
     <Compile Include="Sorts\MinHeapTests.cs" />
+    <Compile Include="Sorts\OrderStatisticsTest.cs" />
     <Compile Include="Sorts\PasteSortTests.cs" />
     <Compile Include="Sorts\PiramidSortTests.cs" />
     <Compile Include="Sorts\PrirityQueueTests.cs" />
+    <Compile Include="Sorts\QuickSortTests.cs" />
     <Compile Include="Sorts\XYPriorityQueueTests.cs" />
   </ItemGroup>
   <ItemGroup>
