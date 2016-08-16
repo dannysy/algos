@@ -1,6 +1,7 @@
 ﻿using CommonUtils.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sort;
+using Sort.Models;
 using Sort.Tasks;
 
 namespace DeckTests.Sorts

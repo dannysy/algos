@@ -16,6 +16,18 @@ namespace CommonUtils.Extensions
             return true;
         }
 
+        public static bool AreEqual(this long[] firstArray, long[] secondArray)
+        {
+            if (firstArray.Length != secondArray.Length)
+                return false;
+            for (int index = 0; index < firstArray.Length; index++)
+            {
+                if (firstArray[index] != secondArray[index])
+                    return false;
+            }
+            return true;
+        }
+
         public static bool AreEqual(this XYPoint[] firstArray, XYPoint[] secondArray)
         {
             if (firstArray.Length != secondArray.Length)

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sort.Tasks
+namespace Sort.Models
 {
     public class PointWithType : IComparable
     {

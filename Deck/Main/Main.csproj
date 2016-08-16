@@ -55,9 +55,20 @@
     <Compile Include="Exercises\XYPriorityQueueTaskMain.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\InputStrings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
+      <Project>{CF0053E1-D0B8-4DAB-B325-E37DF728DD62}</Project>
+      <Name>CommonUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PriorityQ\PriorityQ.csproj">
+      <Project>{a8a6fcb5-7aea-401d-ac8d-1a6f66546b75}</Project>
+      <Name>PriorityQ</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,7 +7,7 @@ using Sort.Tasks;
 namespace DeckTests.Sorts
 {
     [TestClass]
-    public class OrderStatisticsTest
+    public class OrderStatisticsTests
     {
         [TestMethod]
         public void OrderStatisticTest1()

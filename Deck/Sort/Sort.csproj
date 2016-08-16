@@ -40,11 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\KeyValue.cs" />
+    <Compile Include="Models\PointWithType.cs" />
     <Compile Include="Models\ValueInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortUtils.cs" />
     <Compile Include="Tasks\OrderStatistics.cs" />
-    <Compile Include="Tasks\PointWithType.cs" />
     <Compile Include="Tasks\SectionPaintingMerge.cs" />
   </ItemGroup>
   <ItemGroup>

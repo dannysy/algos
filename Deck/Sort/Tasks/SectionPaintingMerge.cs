@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sort.Models;
 
 namespace Sort.Tasks
 {
