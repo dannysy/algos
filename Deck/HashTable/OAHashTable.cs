@@ -1,59 +1,8 @@
 ﻿using System;
-using System.Text;
 
-public class MainClass
+namespace HashTable
 {
-    public static void Main()
-    {
-        var hashTable = new OAHashTable<string, string>(8);
-        var sb = new StringBuilder();
-        while (true)
-        {
-            var readLine = Console.ReadLine();
-            if (readLine == null || readLine.Equals(string.Empty)) break;
-            var input = readLine.Split(' ');
-            switch (input[0])
-            {
-                case "+":
-                {
-                    sb.AppendLine(Output(hashTable.Put(input[1], input[1])));
-                    break;
-                }
-                case "-":
-                {
-                    sb.AppendLine(Output(hashTable.Delete(input[1])));
-                    break;
-                }
-                case "?":
-                {
-                    sb.AppendLine(Output(hashTable.ContainsKey(input[1])));
-                    break;
-                }
-            }
-        }
-        Console.WriteLine(sb.ToString());
-    }
-
-    private static string Output(bool condition)
-    {
-        return condition ? "OK" : "FAIL";
-    }
-
-    private class Entry<TKey, TValue>
-    {
-        public TKey Key { get; }
-        public TValue Value { get; }
-        public bool Deleted { get; set; }
-
-        public Entry(TKey key, TValue value)
-        {
-            Key = key;
-            Value = value;
-            Deleted = false;
-        }
-    }
-
-    private class OAHashTable<TKey, TValue>
+    public class OAHashTable<TKey, TValue>
     {
         private float _loadFactor;
         private int _capacity;
@@ -69,7 +18,7 @@ public class MainClass
 
         public bool Put(TKey key, TValue value)
         {
-            if ((double)_entriesCount / _capacity >= _loadFactor)
+            if( (double) _entriesCount / _capacity >= _loadFactor)
                 RebuildHash();
             var index = GetHash(key) % _capacity;
             var entry = _bucket[index];
@@ -140,7 +89,7 @@ public class MainClass
 
         private uint GetHash(TKey key)
         {
-            return (uint)key.GetHashCode() & 0x7FFFFFFF;
+            return (uint) key.GetHashCode() & 0x7FFFFFFF;
         }
 
         private void RebuildHash()

@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{56C3F4EF-10AB-40F8-802B-6779DCF0EBB8}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{8719C5A6-F883-49D4-BA60-E750A4C98E85}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Main</RootNamespace>
-    <AssemblyName>Main</AssemblyName>
+    <RootNamespace>HashTable</RootNamespace>
+    <AssemblyName>HashTable</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,34 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exercises\AnotherVersion.cs" />
-    <Compile Include="Exercises\BracketsMain.cs" />
-    <Compile Include="Exercises\DeckMain.cs" />
-    <Compile Include="Exercises\DeepMergeTaskMain.cs" />
-    <Compile Include="Exercises\GreedyVovaAndPriprityQueueMain.cs" />
-    <Compile Include="Exercises\HashTableTaskMain.cs" />
-    <Compile Include="Exercises\KorderStatTaskMain.cs" />
-    <Compile Include="Exercises\PaintedSectionsTaskMain.cs" />
-    <Compile Include="Exercises\PasteSortMain.cs" />
-    <Compile Include="Exercises\QuickSortLargeArraysTaskMain.cs" />
-    <Compile Include="Exercises\RadixSortTaskMain.cs" />
-    <Compile Include="Exercises\XYPriorityQueueTaskMain.cs" />
-    <Compile Include="MainClass.cs" />
+    <Compile Include="Entry.cs" />
+    <Compile Include="OAHashTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\InputStrings.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
-      <Project>{CF0053E1-D0B8-4DAB-B325-E37DF728DD62}</Project>
-      <Name>CommonUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PriorityQ\PriorityQ.csproj">
-      <Project>{a8a6fcb5-7aea-401d-ac8d-1a6f66546b75}</Project>
-      <Name>PriorityQ</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

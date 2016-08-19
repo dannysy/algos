@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="BracketTests.cs" />
     <Compile Include="DeckTaskTests.cs" />
+    <Compile Include="HashTableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorts\DeepMergeTests.cs" />
     <Compile Include="Sorts\LsdRadixSortTests.cs" />
@@ -76,6 +77,10 @@
     <ProjectReference Include="..\Deck\Deck.csproj">
       <Project>{C41EFAEF-CC6E-413B-8211-A3B12F7A3485}</Project>
       <Name>Deck</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HashTable\HashTable.csproj">
+      <Project>{8719C5A6-F883-49D4-BA60-E750A4C98E85}</Project>
+      <Name>HashTable</Name>
     </ProjectReference>
     <ProjectReference Include="..\PriorityQ\PriorityQ.csproj">
       <Project>{A8A6FCB5-7AEA-401D-AC8D-1A6F66546B75}</Project>
