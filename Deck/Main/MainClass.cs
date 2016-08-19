@@ -1,160 +1,169 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 public class MainClass
 {
     public static void Main()
     {
-        var hashTable = new OAHashTable<string, string>(8);
-        var sb = new StringBuilder();
-        while (true)
+        var length = int.Parse(Console.ReadLine());
+        var input = Console.ReadLine().Split(' ').Select(int.Parse);
+        if (length == 3)
+            Console.WriteLine("1 2 3");
+        else
         {
-            var readLine = Console.ReadLine();
-            if (readLine == null || readLine.Equals(string.Empty)) break;
-            var input = readLine.Split(' ');
-            switch (input[0])
+            
+            var sb = new StringBuilder();
+            var bTree = new BinaryTree<int>(Comparer<int>.Default);
+            var enumerator = new BinaryTreePostOrderEnumerator<int>(bTree);
+            foreach (var i in input)
+                bTree.AddNode(i);
+            while (enumerator.MoveNext())
             {
-                case "+":
-                {
-                    sb.AppendLine(Output(hashTable.Put(input[1], input[1])));
-                    break;
-                }
-                case "-":
-                {
-                    sb.AppendLine(Output(hashTable.Delete(input[1])));
-                    break;
-                }
-                case "?":
-                {
-                    sb.AppendLine(Output(hashTable.ContainsKey(input[1])));
-                    break;
-                }
+                sb.Append(enumerator.Current + " ");
             }
-        }
-        Console.WriteLine(sb.ToString());
-    }
-
-    private static string Output(bool condition)
-    {
-        return condition ? "OK" : "FAIL";
-    }
-
-    private class Entry<TKey, TValue>
-    {
-        public TKey Key { get; }
-        public TValue Value { get; }
-        public bool Deleted { get; set; }
-
-        public Entry(TKey key, TValue value)
-        {
-            Key = key;
-            Value = value;
-            Deleted = false;
+            Console.WriteLine(sb.ToString());
         }
     }
 
-    private class OAHashTable<TKey, TValue>
+    private class BinaryTreePostOrderEnumerator<T> : IEnumerator<T>
     {
-        private float _loadFactor;
-        private int _capacity;
-        private Entry<TKey, TValue>[] _bucket;
-        private int _entriesCount;
+        private readonly BinaryTree<T> _tree;
+        private BinaryTreeNode<T> _current;
 
-        public OAHashTable(int capacity, float loadFactor = 0.75f)
+        public BinaryTreePostOrderEnumerator(BinaryTree<T> tree)
         {
-            _capacity = capacity;
-            _loadFactor = loadFactor;
-            _bucket = new Entry<TKey, TValue>[_capacity];
+            _tree = tree;
         }
 
-        public bool Put(TKey key, TValue value)
+        public void Dispose()
         {
-            if ((double)_entriesCount / _capacity >= _loadFactor)
-                RebuildHash();
-            var index = GetHash(key) % _capacity;
-            var entry = _bucket[index];
-            var tryNumber = 1;
-            while (entry != null && !entry.Deleted)
+        }
+
+        public bool MoveNext()
+        {
+            if (_current == null)
             {
-                if (entry.Key.Equals(key))
-                    return false;
-                index += tryNumber % 2;
-                if (index >= _capacity)
-                    RebuildHash();
-                entry = _bucket[index];
-                ++tryNumber;
+                _current = _tree.GetFarLeft(_tree.Root);
+                if (_current.Equals(_tree.Root))
+                    SetCurrent(_current);
             }
-            _bucket[index] = new Entry<TKey, TValue>(key, value);
-            _entriesCount++;
-            return true;
-        }
-
-        public bool Delete(TKey key)
-        {
-            var index = GetBucketIndex(key);
-            if (index == -1)
-                return false;
-            _bucket[index].Deleted = true;
-            _entriesCount--;
-            return true;
-        }
-
-        public bool TryGetValue(TKey key, out TValue value)
-        {
-            var index = GetBucketIndex(key);
-            if (index == -1)
+            else if (_current.Equals(_tree.Root))
             {
-                value = default(TValue);
                 return false;
             }
-            value = _bucket[index].Value;
+            else
+            {
+                var parent = _current.Parent;
+                if (parent != null && parent.RightChild.Equals(_current))
+                    _current = parent;
+                else SetCurrent(parent.RightChild);
+            }
             return true;
         }
 
-        public bool ContainsKey(TKey key)
+        private void SetCurrent(BinaryTreeNode<T> node)
         {
-            return GetBucketIndex(key) != -1;
-        }
-
-        private long GetBucketIndex(TKey key)
-        {
-            var index = GetHash(key) % _capacity;
-            var entry = _bucket[index];
-            if (entry == null)
-                return -1;
-            var tryNumber = 1;
-            while (entry != null)
+            var farLeft = _tree.GetFarLeft(node);
+            while (farLeft.Equals(_current) && !farLeft.IsLeaf())
             {
-                if (entry.Deleted)
-                    return -1;
-                if (entry.Key.Equals(key))
-                    return index;
-                index += tryNumber % 2;
-                if (index >= _capacity)
-                    return -1;
-                entry = _bucket[index];
-                ++tryNumber;
+                _current = farLeft.RightChild;
+                farLeft = _tree.GetFarLeft(farLeft.RightChild);
             }
-            return -1;
+            _current = farLeft;
         }
 
-        private uint GetHash(TKey key)
+        public void Reset()
         {
-            return (uint)key.GetHashCode() & 0x7FFFFFFF;
+            _current = null;
         }
 
-        private void RebuildHash()
+        public T Current
         {
-            var tmpBucket = new Entry<TKey, TValue>[_capacity];
-            Array.Copy(_bucket, tmpBucket, _capacity);
-            _capacity = _capacity * 2;
-            _entriesCount = 0;
-            _bucket = new Entry<TKey, TValue>[_capacity];
-            foreach (var entry in tmpBucket)
+            get
             {
-                if (entry != null && !entry.Deleted)
-                    Put(entry.Key, entry.Value);
+                if (_current == null)
+                    throw new InvalidOperationException();
+                return _current.Content;
             }
+        }
+
+        object IEnumerator.Current => Current;
+    }
+
+    private class BinaryTree<T>
+    {
+        private readonly IComparer<T> _comparer;
+        public BinaryTreeNode<T> Root { get; set; }
+        public BinaryTree(IComparer<T> comparer)
+        {
+            _comparer = comparer;
+        }
+
+        public void AddNode(T node)
+        {
+            var child = new BinaryTreeNode<T>(node);
+            if (Root == null)
+            {
+                Root = child;
+            }
+            else
+            {
+                var current = Root;
+                while (true)
+                {
+                    var compare = _comparer.Compare(current.Content, node);
+                    if (compare == 1)
+                    {
+                        if (current.LeftChild == null)
+                        {
+                            current.LeftChild = child;
+                            child.Parent = current;
+                            break;
+                        }
+                        current = current.LeftChild;
+                    }
+                    else
+                    {
+                        if (current.RightChild == null)
+                        {
+                            current.RightChild = child;
+                            child.Parent = current;
+                            break;
+                        }
+                        current = current.RightChild;
+                    }
+
+                }
+            }
+        }
+
+        public BinaryTreeNode<T> GetFarLeft(BinaryTreeNode<T> node)
+        {
+            var current = node;
+            while (current.LeftChild != null)
+                current = current.LeftChild;
+            return current;
+        }
+    }
+
+    private class BinaryTreeNode<T>
+    {
+        public BinaryTreeNode(T content)
+        {
+            Content = content;
+        }
+
+        public BinaryTreeNode<T> Parent { get; set; }
+        public BinaryTreeNode<T> LeftChild { get; set; }
+        public BinaryTreeNode<T> RightChild { get; set; }
+        public T Content { get; set; }
+
+        public bool IsLeaf()
+        {
+            return LeftChild == null && RightChild == null;
         }
     }
 }

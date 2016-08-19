@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BinaryTreeTests.cs" />
     <Compile Include="BracketTests.cs" />
     <Compile Include="DeckTaskTests.cs" />
     <Compile Include="HashTableTests.cs" />
@@ -89,6 +90,10 @@
     <ProjectReference Include="..\Sort\Sort.csproj">
       <Project>{9F803013-3353-4F01-9ACE-45C93580DA63}</Project>
       <Name>Sort</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tree\Tree.csproj">
+      <Project>{5410B614-6464-4E12-8013-B5B13C1FC948}</Project>
+      <Name>Tree</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
